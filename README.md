@@ -3,7 +3,7 @@ EEPROM(I2C) library for read/write objects, arrays, strings and fonts
 
 INSTALLATION 
 ------------
-To download, click the DOWNLOAD ZIP button, uncompress and rename the uncompressed folder to "ConnD_EEPROM". Place the "ConnD_EEPROM" library folder to your arduino environment "<sketch folder>/libraries" subfolder. You can see, and even change, your <sketch folder> in the IDE under the menu File>Preferences. You may need to create the libraries subfolder if this is your first library. Restart the IDE.
+To download, click the DOWNLOAD ZIP button, uncompress and rename the uncompressed folder to "ConnD_EEPROM". Place the "ConnD_EEPROM" library folder to your arduino environment "<sketch folder>/libraries" subfolder. You can see, and even change, yours, in the IDE under the menu File>Preferences. You may need to create the libraries subfolder if this is your first library. Restart the IDE.
 
 HOW TO USE 
 ------------
