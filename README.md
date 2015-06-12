@@ -59,12 +59,16 @@ eeprom.writeString(addr2, (uint8_t*)str2);                  //write str2
 2. **readString** method
 ```
 #define BUFSIZE 128
-bufsize uint8_t buffer[BUFSIZE];   //we need a buffer where read characters will be saved
+bufsize char buffer[BUFSIZE]; //we need a buffer where read characters will be saved
 
-//The addr1, addr2 variables (uint16_t type) should hold the addresses 
-//where each string is written to. 
-eeprom.readString(addr1, (uint8_t*)str1);
-eeprom.writeString(addr2, (uint8_t*)str2);
+//The addr1, addr2 variables (uint16_t type) should hold 
+//the addresses, where each string was written to. 
 
+eeprom.readString(addr1,  (uint8_t*)buffer,  (uint16_t)BUFSIZE); 
+Serial.print(buffer);
+
+eeprom.readString(addr2,  (uint8_t*)buffer,  (uint16_t)BUFSIZE); 
+Serial.print(buffer);
+```
 
 
