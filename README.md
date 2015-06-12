@@ -75,13 +75,13 @@ Serial.print(buffer);
 
 Arrays
 ------
-The **writeByteArray** method writes a byte array to eeprom and returns the number of written bytes. 
+The **writeByteArray** method writes a byte array to eeprom and returns the number of written bytes. It is quite useful for writing monochrome bitmap images that are converted to byte arrays (using the LCDAssistant software for instance).
 ```
 #define ARRLEN 8
 uint8_t arr[ARRLEN] = {1,2,4,8,16,32,64,128};
 
 uint16_t addr=1024; //the address where the first array element will be written
-writeByteArray(addr, arr, ARRLEN);  //writes the array
+eeprom.writeByteArray(addr, arr, ARRLEN);  //writes the array
 ```
 
 The **readByteArray** method reads a byte array from eeprom and returns the number of read bytes. 
@@ -90,26 +90,46 @@ The **readByteArray** method reads a byte array from eeprom and returns the numb
 uint8_t arr[ARRLEN];
 
 uint16_t addr=1024; //the address where the first array element was written
-readByteArray(addr, arr, ARRLEN);  //writes the array
+eeprom.readByteArray(addr, arr, ARRLEN);  //writes the array
+```
+
+Fonts
+-----
+The *writeFont* method, makes possible to write proportional font bitmap characters to EEPROM. The widths of every character as well as their monochrome bitmaps should reside in PROGMEM arrays. Here is a basic example, using this method:
+```
+PROGMEM uint8_t FONT_BITMAPS_ARR[] = {...}
+PROGMEM uint8_t FONT_WIDTHS_ARR[] = {...}
+
+uint8_t byteHeight = 2;      //character height = 2*8=16 pixels
+const char firstChar = ' ';  //space 
+const char lastChar = '~';   //all ascii characters between this and firstChar are included.
+                             // this means lastChar-firstChar+1   number of characters.
+                             //the PROGMEM should match this number. 
+
+uint16_t addr=8192;  //the memory address where writing will begin. 
+addr += eeprom.writeFont(addr, byteHeight, firstchar, lastchar, 
+                          FONT_WIDTHS_ARR, 
+                          FONT_BITMAPS_ARR);
+
 ```
 
 Customizing eeprom object
 -------------------------
-## I2C address
+### I2C address
 By default, the eepromI2C class assumes that the I2C address of the EEPROM device is 0x50. This can be altered though during construction of the eepromI2C global object. For a device having I2C address 0x52, we may use:
 `eepromI2C eeprom(0x52);`
 
-## Read block size
+### Read block size
 Reading from EEPROM is perfomed in blocks of bytes. By default, the eepromI2C class uses blocks of 30 bytes which is the maximum size supported by the #Wire# library, without modifying it. For performance reasons (i.e. reading of many small objects) it is possible to specify a different block size. For example, the next line of code creates an eepromI2C object, using I2C address 0x50 and block size equal to 4:
 `eepromI2C eeprom(0x50, 4);`
 
-## Other options
-Hacking into the "ConnD_EEPROM.h" header file, the following parameters may be customized:
+### Other options
+Hacking into the "ConnD_EEPROM.h" header file, the following defines may be customized:
 ```
-EEPROM_DEFAULT_WRITE_LEN	16		//Block size for writing. 
-                                //It should divides perfectly the page size (normally 64)
+EEPROM_DEFAULT_WRITE_LEN	16    //Block size for writing. 
+                                //It should divide perfectly the page size (normally 64)
                                 
-define EEPROM_WRITE_DELAY  5    //Delay in msecs after each write operation. 
+EEPROM_WRITE_DELAY  5           //Delay in msecs after each write operation. 
                                 //Should be obtained from the device datasheet
 
 ```
