@@ -7,7 +7,7 @@ To download, click the DOWNLOAD ZIP button, uncompress and rename the uncompress
 
 HOW TO USE 
 ------------
-1. Include the "ConnD_EEPROM.h" file to your sketch
+1. Include the "Wire.h" and "ConnD_EEPROM.h" file to your sketch.
 
 2. Define a global object of type eepromI2C. At its simplest form this can be accomplished with the following line of code:
 `eepromI2C eeprom;`
@@ -92,4 +92,26 @@ uint8_t arr[ARRLEN];
 uint16_t addr=1024; //the address where the first array element was written
 readByteArray(addr, arr, ARRLEN);  //writes the array
 ```
+
+Customizing eeprom object
+-------------------------
+## I2C address
+By default, the eepromI2C class assumes that the I2C address of the EEPROM device is 0x50. This can be altered though during construction of the eepromI2C global object. For a device having I2C address 0x52, we may use:
+`eepromI2C eeprom(0x52);`
+
+## Read block size
+Reading from EEPROM is perfomed in blocks of bytes. By default, the eepromI2C class uses blocks of 30 bytes which is the maximum size supported by the #Wire# library, without modifying it. For performance reasons (i.e. reading of many small objects) it is possible to specify a different block size. For example, the next line of code creates an eepromI2C object, using I2C address 0x50 and block size equal to 4:
+`eepromI2C eeprom(0x50, 4);`
+
+## Other options
+Hacking into the "ConnD_EEPROM.h" header file, the following parameters may be customized:
+```
+EEPROM_DEFAULT_WRITE_LEN	16		//Block size for writing. 
+                                //It should divides perfectly the page size (normally 64)
+                                
+define EEPROM_WRITE_DELAY  5    //Delay in msecs after each write operation. 
+                                //Should be obtained from the device datasheet
+
+```
+
 
