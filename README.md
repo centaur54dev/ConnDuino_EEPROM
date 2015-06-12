@@ -46,7 +46,7 @@ uint16_t addr = 1024; //the address where reading will start.
 ```
 
 
-Writting and reading back strings
+Writting and reading strings
 -------------------------------
 1. The **writeString** method writes a null terminated string to eeprom and returns the number of written bytes (this include the null character too). Here is an example:
 ``` 
@@ -95,7 +95,7 @@ eeprom.readByteArray(addr, arr, ARRLEN);  //writes the array
 
 Fonts
 -----
-The *writeFont* method, makes possible to write proportional font bitmap characters to EEPROM. The widths of every character as well as their monochrome bitmaps should reside in PROGMEM arrays. Here is a basic example, using this method:
+The **writeFont** method, makes possible to write proportional font bitmap characters to EEPROM. The widths of every character as well as their monochrome bitmaps should reside in PROGMEM arrays. Here is a basic example, using this method:
 ```
 PROGMEM uint8_t FONT_BITMAPS_ARR[] = {...}
 PROGMEM uint8_t FONT_WIDTHS_ARR[] = {...}
