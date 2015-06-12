@@ -23,9 +23,48 @@ uint16_t addr = 1024; //the address where writting will start.
                       //Each object will be written sequentially after the previous one. 
                       
  addr += eeprom.writeObject(addr, i); //writes the int and increments addr by the number of written bytes
- addr += eeprom.writeObject(addr, pi);
- addr += eeprom.writeObject(addr, a);
- addr += eeprom.writeObject(addr, foo);
+ addr += eeprom.writeObject(addr, pi); //writes a float
+ addr += eeprom.writeObject(addr, a);   //writes a boolean
+ addr += eeprom.writeObject(addr, foo);   //writes a custom type 
 
 ```
+4. Use the **readObject** method to read objects of any type from eeprom. The following code snippet reads back the objects written above:
+```
+int   i;
+float pi;
+bool  a;;
+MyClass foo;    
+
+uint16_t addr = 1024; //the address where reading will start. 
+                      
+ addr += eeprom.readObject(addr, i); //reads the int and increments addr by the number of read bytes
+ addr += eeprom.readObject(addr, pi);   //reads a float
+ addr += eeprom.readObject(addr, a);    //reads a boolean
+ addr += eeprom.readObject(addr, foo);  //reads a custom type
+
+```
+
+
+Saving and reading back strings
+-------------------------------
+1. **writeString** method
+``` const char* str1 = "abcdef";
+    const char* str2 = "xyz";
+
+uint16_t addr1=1024, addr2;  //the addresses where each string will be written.
+addr2 = addr1 + eeprom.writeString(addr1, (uint8_t*)str1);  //write str1 
+eeprom.writeString(addr2, (uint8_t*)str2);                  //write str2
+
+
+2. **readString** method
+```
+#define BUFSIZE 128
+bufsize uint8_t buffer[BUFSIZE];   //we need a buffer where read characters will be saved
+
+//The addr1, addr2 variables (uint16_t type) should hold the addresses 
+//where each string is written to. 
+eeprom.readString(addr1, (uint8_t*)str1);
+eeprom.writeString(addr2, (uint8_t*)str2);
+
+
 
