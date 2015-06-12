@@ -95,7 +95,7 @@ eeprom.readByteArray(addr, arr, ARRLEN);  //writes the array
 
 Fonts
 -----
-The **writeFont** method, makes possible to write proportional font bitmap characters to EEPROM. The widths of every character as well as their monochrome bitmaps should reside in PROGMEM arrays. Here is a basic example, using this method:
+The **writeFont** method, makes possible to write proportional font bitmap characters to EEPROM. The widths of all characters as well as their monochrome bitmaps should reside in PROGMEM arrays. Here is a basic example, using this method:
 ```
 PROGMEM uint8_t FONT_BITMAPS_ARR[] = {...}
 PROGMEM uint8_t FONT_WIDTHS_ARR[] = {...}
@@ -103,8 +103,8 @@ PROGMEM uint8_t FONT_WIDTHS_ARR[] = {...}
 uint8_t byteHeight = 2;      //character height = 2*8=16 pixels
 const char firstChar = ' ';  //space 
 const char lastChar = '~';   //all ascii characters between this and firstChar are included.
-                             // this means lastChar-firstChar+1   number of characters.
-                             //the PROGMEM should match this number. 
+                             //this means lastChar-firstChar+1 number of characters.
+                             //the PROGMEM arrays should match this number. 
 
 uint16_t addr=8192;  //the memory address where writing will begin. 
 addr += eeprom.writeFont(addr, byteHeight, firstchar, lastchar, 
@@ -117,10 +117,12 @@ Customizing eeprom object
 -------------------------
 ### I2C address
 By default, the eepromI2C class assumes that the I2C address of the EEPROM device is 0x50. This can be altered though during construction of the eepromI2C global object. For a device having I2C address 0x52, we may use:
+
 `eepromI2C eeprom(0x52);`
 
 ### Read block size
 Reading from EEPROM is perfomed in blocks of bytes. By default, the eepromI2C class uses blocks of 30 bytes which is the maximum size supported by the #Wire# library, without modifying it. For performance reasons (i.e. reading of many small objects) it is possible to specify a different block size. For example, the next line of code creates an eepromI2C object, using I2C address 0x50 and block size equal to 4:
+
 `eepromI2C eeprom(0x50, 4);`
 
 ### Other options
