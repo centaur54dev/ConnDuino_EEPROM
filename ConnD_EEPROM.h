@@ -80,10 +80,10 @@ public:
 		* A null termination is appended after all chars have been written.
 		* Returns the number of written chars including the null termination.
 		> memaddr: 	the memory address for the 1st char to be written.
-		> str:		the array of bytes, representing the string.
+		> str:		the array of chars, representing the string.
 		> strLen:	the length of the string  (excluding null termination). 
 	*/
-	uint16_t writeString(uint16_t memaddr, const uint8_t* str, uint16_t strLen);
+	uint16_t writeString(uint16_t memaddr, const char* str, uint16_t strLen);
 
 
 	/*!Writes a string of arbitrary size (null terminated) to device. 
@@ -91,19 +91,19 @@ public:
 		  calls writeString with the calculated string length.
 		* Returns the number of written chars including the null termination.
 		> memaddr: 	the memory address for the 1st char to be written.
-		> str:		the array of bytes, representing the string.
+		> str:		the array of chars, representing the string.
 	*/
-	uint16_t writeString(uint16_t memaddr, const uint8_t* str);
+	uint16_t writeString(uint16_t memaddr, const char* str);
 
 	/*!Reads a string from device. 
 		* Reading will stop if buffer is full or char 0 (=null terrmination) is read.
 		* Returns the number of bytes read (not including null termination)
 		> memaddr: 	  the memory address for the 1st string char to be read.
-		> str:		  an array of bytes, where the read string chars will be saved.
+		> str:		  an array of chars, where the read string will be saved.
 		> bufferSize: the size of the str array. If read chars exceed this value
 					  reading stops.
 	*/
-	uint16_t readString(uint16_t memaddr, uint8_t* str, uint16_t bufferSize);
+	uint16_t readString(uint16_t memaddr, char* str, uint16_t bufferSize);
 
 
 	/*!Writes an object of any type to device. 

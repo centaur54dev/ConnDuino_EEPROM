@@ -41,7 +41,7 @@ void setup(){
       
    for (int i=0; i<5; i++){
      address[i] = mem_addr;
-     mem_addr += ee.writeString(mem_addr, (uint8_t*)phrase[i]);   
+     mem_addr += ee.writeString(mem_addr, phrase[i]);   
    }
    long t1 = millis();
    Serial.print ("...writing finished. Elapsed time: "); Serial.println(t1-t0);
@@ -53,7 +53,7 @@ void setup(){
    t0 = millis();
     
    for (int i=0; i<5; i++){
-	   ee.readString(address[i], (uint8_t*)&readback[i*MAX_STR_LEN], MAX_STR_LEN);
+	   ee.readString(address[i], &readback[i*MAX_STR_LEN], MAX_STR_LEN);
    }
    t1 = millis();
    Serial.print ("...reading finished. Elapsed time: "); Serial.println(t1-t0);
@@ -65,7 +65,7 @@ void setup(){
    for (int i = 0; i < 5; i++){
 	   Serial.print(i+1);
 	   Serial.print(": ");
-	   Serial.println((const char*)&readback[i*MAX_STR_LEN]);
+	   Serial.println(&readback[i*MAX_STR_LEN]);
    }
   }	
 

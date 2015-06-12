@@ -104,9 +104,9 @@ eepromI2C::readByteArray(uint16_t addr, uint8_t* arr, uint16_t size){
 
 
 uint16_t 
-eepromI2C::writeString(uint16_t addr, const uint8_t* str, uint16_t strLen){
+eepromI2C::writeString(uint16_t addr, const char* str, uint16_t strLen){
 		
-	int i = writeByteArray(addr, str, strLen);
+	int i = writeByteArray(addr, (const uint8_t*)str, strLen);
 	addr += i;
 
 	//write null termination 
@@ -119,7 +119,7 @@ eepromI2C::writeString(uint16_t addr, const uint8_t* str, uint16_t strLen){
 }
 
 uint16_t 
-eepromI2C::writeString(uint16_t addr, const uint8_t* str){
+eepromI2C::writeString(uint16_t addr, const char* str){
 	//find the end of string
 	uint16_t strLen=0;
 	for (uint16_t i=0; i< EEPROM_MAX_STRING_WRITE; i++){
@@ -130,7 +130,7 @@ eepromI2C::writeString(uint16_t addr, const uint8_t* str){
 }
 
 uint16_t 
-eepromI2C::readString(uint16_t addr, uint8_t* str, uint16_t bufferSize){
+eepromI2C::readString(uint16_t addr, char* str, uint16_t bufferSize){
 	uint8_t blockBytes = 0;		//in loop: the number of bytes up to block end.
 	uint16_t  i;
 	
