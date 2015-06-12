@@ -54,7 +54,7 @@ Saving and reading back strings
 uint16_t addr1=1024, addr2;  //the addresses where each string will be written.
 addr2 = addr1 + eeprom.writeString(addr1, str1);  //write str1 
 eeprom.writeString(addr2, str2);                  //write str2
-
+```
 
 2. **readString** method
 ```
