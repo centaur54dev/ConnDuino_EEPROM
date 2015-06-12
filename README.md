@@ -52,8 +52,8 @@ Saving and reading back strings
     const char* str2 = "xyz";
 
 uint16_t addr1=1024, addr2;  //the addresses where each string will be written.
-addr2 = addr1 + eeprom.writeString(addr1, (uint8_t*)str1);  //write str1 
-eeprom.writeString(addr2, (uint8_t*)str2);                  //write str2
+addr2 = addr1 + eeprom.writeString(addr1, str1);  //write str1 
+eeprom.writeString(addr2, str2);                  //write str2
 
 
 2. **readString** method
@@ -64,10 +64,10 @@ bufsize char buffer[BUFSIZE]; //we need a buffer where read characters will be s
 //The addr1, addr2 variables (uint16_t type) should hold 
 //the addresses, where each string was written to. 
 
-eeprom.readString(addr1,  (uint8_t*)buffer,  (uint16_t)BUFSIZE); 
-Serial.print(buffer);
+eeprom.readString(addr1,  buffer,  BUFSIZE); //read str1
+Serial.print(buffer); 
 
-eeprom.readString(addr2,  (uint8_t*)buffer,  (uint16_t)BUFSIZE); 
+eeprom.readString(addr2,  buffer,  BUFSIZE); //read str2
 Serial.print(buffer);
 ```
 
