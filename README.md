@@ -97,8 +97,8 @@ Fonts
 -----
 The **writeFont** method, makes possible to write proportional font bitmap characters to EEPROM. The widths of all characters as well as their monochrome bitmaps should reside in PROGMEM arrays. Here is a basic example, using this method:
 ```
-PROGMEM uint8_t FONT_BITMAPS_ARR[] = {...}
-PROGMEM uint8_t FONT_WIDTHS_ARR[] = {...}
+PROGMEM uint8_t FONT_BITMAPS_ARR[] = {...};
+PROGMEM uint8_t FONT_WIDTHS_ARR[] = {...};
 
 uint8_t byteHeight = 2;      //character height = 2*8=16 pixels
 const char firstChar = ' ';  //space 
