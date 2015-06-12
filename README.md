@@ -48,7 +48,8 @@ uint16_t addr = 1024; //the address where reading will start.
 Saving and reading back strings
 -------------------------------
 1. **writeString** method
-``` const char* str1 = "abcdef";
+``` 
+const char* str1 = "abcdef";
     const char* str2 = "xyz";
 
 uint16_t addr1=1024, addr2;  //the addresses where each string will be written.
