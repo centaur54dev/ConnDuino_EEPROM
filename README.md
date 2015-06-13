@@ -114,7 +114,7 @@ addr += eeprom.writeFont(addr, byteHeight, firstchar, lastchar,
 ```
 
 The font data are written to eeprom memory, according to the following order:
-# | Data      | Bytes
+Order | Data      | Bytes
 ---------------------
 1 | byteHeight | 1
 2 | firstChar  | 1
