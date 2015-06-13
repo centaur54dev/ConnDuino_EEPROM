@@ -113,7 +113,17 @@ addr += eeprom.writeFont(addr, byteHeight, firstchar, lastchar,
 
 ```
 
-Customizing eeprom object
+The font data are written to eeprom memory, according to the following order:
+#|Data      |Bytes
+1|byteHeight|1
+2|firstChar |1
+3|lastChar  |1
+4|widths    |number of characters in font
+5|bitmaps   |varies
+
+
+
+Customizing eepromI2C object
 -------------------------
 ### I2C address
 By default, the eepromI2C class assumes that the I2C address of the EEPROM device is 0x50. This can be altered though during construction of the eepromI2C global object. For a device having I2C address 0x52, we may use:
