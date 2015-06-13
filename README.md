@@ -113,7 +113,7 @@ addr += eeprom.writeFont(addr, byteHeight, firstchar, lastchar,
 
 ```
 
-The font data are written to eeprom memory, according to the following order:
+The font data are written to eeprom memory, according to the following order and byte count:
 
 Order | Data       | Bytes
 ------|------------|-----------
@@ -121,9 +121,9 @@ Order | Data       | Bytes
 2     | firstChar  | 1
 3     | lastChar   | 1
 4     | widths     | number of characters in font
-5     | bitmaps    | sum of widths x byteHeight
+5     | bitmaps    | sum of widths * byteHeight
 
-Currently, use of such fonts, stored in eeprom is made by the [ConnDuino-GFX Library](http://github.com/ConnDuino/ConnDuino-GFX-Library) 
+Currently, use of such fonts, stored in eeprom, is made by the [ConnDuino-GFX Library](http://github.com/ConnDuino/ConnDuino-GFX-Library) 
 
 Customizing eepromI2C object
 -------------------------
