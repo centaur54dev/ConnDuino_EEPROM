@@ -1,11 +1,11 @@
 # ConnDuino_EEPROM
 EEPROM(I2C) library for Arduino to read/write objects, arrays, strings and fonts 
 
-INSTALLATION 
+Installation 
 ------------
 To download, click the DOWNLOAD ZIP button, uncompress and rename the uncompressed folder to "ConnD_EEPROM". Place the "ConnD_EEPROM" library folder to your arduino environment "<sketch folder>/libraries" subfolder. You can see, and even change yours, in the IDE under the menu File>Preferences. You may need to create the libraries subfolder if this is your first library. Restart the IDE.
 
-HOW TO USE 
+How to use 
 ------------
 1. Include the "Wire.h" and "ConnD_EEPROM.h" file to your sketch.
 
@@ -114,13 +114,13 @@ addr += eeprom.writeFont(addr, byteHeight, firstchar, lastchar,
 ```
 
 The font data are written to eeprom memory, according to the following order:
-#|Data      |Bytes
+# | Data      | Bytes
 ---------------------
-1|byteHeight|1
-2|firstChar |1
-3|lastChar  |1
-4|widths    |number of characters in font
-5|bitmaps   |varies
+1 | byteHeight | 1
+2 | firstChar  | 1
+3 | lastChar   | 1
+4 | widths     | number of characters in font
+5 | bitmaps    | sum of widths * byteHeight
 
 Cuurently, use of such fonts, stored in eeprom is made by the [ConnDuino-GFX Library](http://github.com/ConnDuino/ConnDuino-GFX-Library) 
 
