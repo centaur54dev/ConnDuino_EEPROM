@@ -1,6 +1,8 @@
 # ConnDuino_EEPROM
 EEPROM(I2C) library for Arduino to read/write objects, arrays, strings and fonts 
 
+This library is used for the ConnDuino board projects. For more info about the board visit:  www.connduino.com
+
 Installation 
 ------------
 To download, click the DOWNLOAD ZIP button, uncompress and rename the uncompressed folder to "ConnD_EEPROM". Place the "ConnD_EEPROM" library folder to your arduino environment "<sketch folder>/libraries" subfolder. You can see, and even change yours, in the IDE under the menu File>Preferences. You may need to create the libraries subfolder if this is your first library. Restart the IDE.
