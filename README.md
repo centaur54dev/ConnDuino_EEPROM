@@ -31,7 +31,7 @@ uint16_t addr = 1024; //the address where writting will start.
  addr += eeprom.writeObject(addr, foo);   //writes a custom type 
 
 ```
-4. Use the **readObject** method to read objects of any type from eeprom. It returns the number of read bytes. The following code snippet reads back the objects written previously:
+Use the **readObject** method to read objects of any type from eeprom. It returns the number of read bytes. The following code snippet reads back the objects written previously:
 ```
 int   i;
 float pi;
