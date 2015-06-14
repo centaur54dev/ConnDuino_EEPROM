@@ -50,7 +50,7 @@ uint16_t addr = 1024; //the address where reading will start.
 
 Writting and reading strings
 -------------------------------
-1. The **writeString** method writes a null terminated string to eeprom and returns the number of written bytes (this include the null character too). Here is an example:
+1. The **writeString** method writes a null terminated string to eeprom and returns the number of written bytes (this includes the null character too). Here is an example:
 ``` 
 const char* str1 = "abcdef";
 const char* str2 = "xyz";
