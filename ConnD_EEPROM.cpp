@@ -71,6 +71,34 @@ eepromI2C::writeByteArray(uint16_t addr, const uint8_t* arr, uint16_t size){
 
 
 
+uint16_t 
+eepromI2C::writeByteArrayPROGMEM(uint16_t addr, const uint8_t* arr, uint16_t size){
+	
+	uint8_t blockBytes		= _blockBytesWrite(addr);
+	uint8_t blockBytesIni	=  blockBytes;
+
+	setMemAddr(addr);
+	
+	int i;	
+	for (i=0; i<size; i++){	
+		if (blockBytes==0){
+			Wire.endTransmission();
+			delay(EEPROM_WRITE_DELAY);
+			addr += blockBytesIni;
+			blockBytes = blockBytesIni = EEPROM_DEFAULT_WRITE_LEN;	
+			Wire.beginTransmission(_i2cAddr);
+			Wire.write((int)(addr >> 8));		// MSB
+			Wire.write((int)(addr & 0xFF));		// LSB
+		}
+		Wire.write( pgm_read_byte(arr) );
+		arr++;
+		blockBytes--;
+	}
+	Wire.endTransmission();
+	delay(EEPROM_WRITE_DELAY);
+	return i;
+}
+
 
 uint16_t 
 eepromI2C::readByteArray(uint16_t addr, uint8_t* arr, uint16_t size){

@@ -67,6 +67,15 @@ public:
 	uint16_t writeByteArray(uint16_t memaddr, const uint8_t* arr, uint16_t size);
 
 
+	/*!Writes a byte array from progmem to device. 
+		* Returns the number of written bytes.
+		> memaddr: 	the memory address for the 1st byte to be written.	
+		> arr:		the array of bytes.
+		> size:		the size of arr.
+	*/
+	uint16_t writeByteArrayPROGMEM(uint16_t memaddr, const uint8_t* arr, uint16_t size);
+
+
 	/*!Reads a byte array from the device. 
 		* Returns the number of read bytes. 
 		> memaddr: 	the memory address for the 1st byte to be read	
