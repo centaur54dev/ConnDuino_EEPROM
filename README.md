@@ -77,7 +77,7 @@ Serial.print(buffer);
 
 Arrays
 ------
-The **writeByteArray** method writes a byte array to eeprom and returns the number of written bytes. It is quite useful for writing monochrome bitmap images that are converted to byte arrays (using the LCDAssistant software for instance).
+The **writeByteArray** and **writeByteArrayPROGMEM** methods write a byte array to eeprom and return the number of written bytes. The writeByteArrayPROGMEM accepts an array declared with the PROGMEM directive (stored in flash memory). These methods are quite useful for writing monochrome bitmaps (readily converted to byte arrays using the LCDAssistant software for instance). 
 ```
 #define ARRLEN 8
 uint8_t arr[ARRLEN] = {1,2,4,8,16,32,64,128};
