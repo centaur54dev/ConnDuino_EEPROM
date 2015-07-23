@@ -40,6 +40,33 @@ eepromI2C::writeFont(uint16_t memaddr, uint8_t byteHeight, uint8_t c0, uint8_t c
 }
 
 
+void  
+eepromI2C::readFont(uint16_t memaddr, 
+					uint8_t* charWidths, uint16_t* charOffsets, 
+					uint16_t& dataAddr0,
+					uint8_t& byteH, char& firstChar, char& lastChar){
+
+	//read header
+	uint8_t fonthead[3];
+	memaddr += readByteArray(memaddr, fonthead, 3);
+	byteH		= fonthead[0];
+	firstChar   = fonthead[1];
+	lastChar	= fonthead[2];
+	
+	//read char data
+	const uint8_t	numChars = lastChar - firstChar + 1;
+	memaddr += readByteArray(memaddr, charWidths, numChars);
+
+	dataAddr0 = memaddr;
+	//make char offsets
+	charOffsets[0] = 0;
+	for (uint8_t i = 1; i < numChars; i++){
+		charOffsets[i] = charOffsets[i - 1] + charWidths[i - 1]*byteH;
+	}
+}
+
+
+
 
 uint16_t 
 eepromI2C::writeByteArray(uint16_t addr, const uint8_t* arr, uint16_t size){

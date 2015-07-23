@@ -57,6 +57,18 @@ public:
 	uint16_t  writeFont(uint16_t memaddr, uint8_t byteHeight, uint8_t c0, uint8_t clast,
 						uint8_t* widths, uint8_t* bitmaps);
 
+	/*!Read from eeprom and store character widths & offsets in arrays. 
+	  Those should have sufficient size. 
+	 	> memaddr: 	  the start memory address for the reading
+		> charWidths:	array where the pixel width of each character will be written
+		> charOffsets:	array with the offset of each char from 1st one (in bytes) will be written
+		> dataAddr0:	retuns the memory address where font bitmaps start
+		> byteH:		returns the number of bytes(=8 pixels) of character height
+		> firstChar:	returns the first character of the font
+		> lastChar:	    returns the last character of the font		
+	 */
+	void  readFont(uint16_t memaddr, uint8_t* charWidths, uint16_t* charOffsets, uint16_t& dataAddr0, uint8_t& byteH, char& firstChar, char& lastChar);
+	
 
 	/*!Writes a byte array to device. 
 		* Returns the number of written bytes.
